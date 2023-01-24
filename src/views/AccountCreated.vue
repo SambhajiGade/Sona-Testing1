@@ -1,0 +1,903 @@
+<template>
+  <v-app>
+    <div class="text-left ml-10 mb-5">
+    <v-dialog v-model="dialog" width="900">
+      <template v-slot:activator="{ on, attrs }">
+        <v-row class="mt-8 ml-8">
+          <v-btn color="primary" class="white--text" v-bind="attrs" v-on="on">
+            <v-icon dark>mdi-plus</v-icon>Add
+          </v-btn>
+
+          <v-btn
+            color="primary"
+            class="white--text ml-3"
+            @click="edit(selected1)"
+            >EDIT</v-btn
+          >
+
+          <v-btn color="primary" class="white--text ml-3" to="/Home"
+            >HOME</v-btn
+          >
+        </v-row>
+      </template>
+
+      <v-card>
+        <v-card-title class="text-h5 grey lighten-2">
+          ADD DATA HERE
+        </v-card-title>
+
+        <v-divider></v-divider>
+
+        <!-- ---------------------------------------------------------------------------------------------------- -->
+
+        <v-card-text>
+          <div ma-0>
+
+            <v-row class="text-center" justify="center" align="center">
+              <v-col cols="3">
+                <v-header class="font-weight-medium"> Project </v-header>
+              </v-col>
+
+              <v-col cols="3">
+                <v-select
+                  v-model="postdata.Project1"
+                  :items="Project1List"
+                  label="Select"
+                  persistent-hint
+                  return-object
+                  single-line
+                  @change="Project1selected()"
+                  :rules="[(v) => !!v || 'Project is required']"
+                  required
+                >
+                </v-select>
+              </v-col>
+            </v-row>
+
+
+            <v-row class="text-center" justify="center" align="center">
+              <v-col cols="3">
+                <v-header class="font-weight-medium"> GEAR PAIR </v-header>
+              </v-col>
+
+              <v-col cols="3">
+                <v-select
+                  v-model="postdata.Project"
+                  :items="GearPair"
+                  label="Select"
+                  persistent-hint
+                  return-object
+                  single-line
+                  @change="Projectselected()"
+                  :rules="[(v) => !!v || 'Gear Pair is required']"
+                  required
+                >
+                </v-select>
+              </v-col>
+            </v-row>
+
+      
+
+            <v-row class="text-center" justify="center" align="center">
+              <v-col cols="3">
+                <v-header class="font-weight-medium"> Model </v-header>
+              </v-col>
+
+              <v-col cols="3">
+                <v-select
+                  v-model="postdata.Model"
+                  :items="ModelList"
+                  label="Select"
+                  persistent-hint
+                  return-object
+                  single-line
+                  @change="ModelSelected()"
+                  :rules="[(v) => !!v || 'Model is required']"
+                  required
+                >
+                </v-select>
+              </v-col>
+            </v-row>
+
+            <v-row class="text-center" justify="center" align="center">
+              <v-col cols="3">
+                <v-header class="font-weight-medium" pa-0> Design </v-header>
+              </v-col>
+
+              <v-col cols="3">
+                <v-select
+                  v-model="postdata.Design"
+                  :items="DesignList"
+                  label="Select"
+                  persistent-hint
+                  return-object
+                  single-line
+                  @change="DesignSelected()"
+                  :rules="[(v) => !!v || 'Report is required']"
+                  required
+                >
+                </v-select>
+              </v-col>
+            </v-row>
+
+
+            <v-row
+              class="text-center"
+              justify="center"
+              align="center"
+              pa-0
+              ma-0
+              mt-0
+            >
+              <v-col cols="3" pa-0 ma-0>
+                <v-header class="font-weight-medium" pa-0 ma-0>
+                 Nominal/Design Torque
+                </v-header>
+              </v-col>
+
+              <v-col cols="3" pa-0 ma-0>
+                <v-select
+                  v-model="postdata.NominalTorque"
+                  :items="NominalList"
+                  label="Select"
+                  persistent-hint
+                  return-object
+                  single-line
+                  @change="NTselected()"
+                  :rules="[(v) => !!v || 'Nominal Torque is required']"
+                  required
+                >
+                </v-select>
+              </v-col>
+            </v-row>
+
+            <v-row
+              class="text-center"
+              justify="center"
+              align="center"
+              pa-0
+              ma-0
+              mt-0
+            >
+              <v-col cols="3" pa-0 ma-0>
+                <v-header class="font-weight-medium" pa-0 ma-0>
+                  Differential Torque
+                </v-header>
+              </v-col>
+
+              <v-col cols="3" pa-0 ma-0>
+                <v-select
+                  v-model="postdata.JJ01"
+                  :items="items1"
+                  label="Select"
+                  persistent-hint
+                  return-object
+                  single-line
+                  @change="DTselected()"
+                  :rules="[(v) => !!v || 'Differential Torque is required']"
+                  required
+                >
+                </v-select>
+              </v-col>
+            </v-row>
+          </div>
+          <br /><br />
+
+          <v-container>
+            <!-- --------------------------------------------------------------------------------------------------- -->
+
+            <div>
+              <v-row>
+                <v-col cols="6">
+                  <v-row justify="center">
+                    <v-col cols="8" align="center" pt-0 ma-0>
+                      <p class="font-weight-bold" mb-0 pa-0>GEAR</p>
+                    </v-col>
+                  </v-row>
+
+                  <div>
+                    <div>
+                      <v-row align="center" justify="center">
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="gearF1"
+                          @change="filechange1"
+                        />
+
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="gearF2"
+                          @change="filechange2"
+                        />
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="gearP1"
+                          @change="filechange3"
+                        />
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="gearP2"
+                          @change="filechange4"
+                        />
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="gf1()">Gear Feasible1</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namegf1 }}</p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="gf2()">Gear Feasible2</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namegf2 }}</p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="gp1()">Gear Physical1</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namegp1 }}</p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="gp2()">Gear Physical2</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namegp2 }}</p>
+                        </v-col>
+                      </v-row>
+                    </div>
+                  </div>
+                </v-col>
+
+                <!-- *************************************** -->
+
+                <v-col cols="6">
+                  <div>
+                    <v-row justify="center">
+                      <v-col cols="8" align="center">
+                        <p class="font-weight-bold" mb-0 pa-0>PINION</p>
+                      </v-col>
+                    </v-row>
+                  </div>
+
+                  <div>
+                    <div>
+                      <v-row align="left" justify="center">
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="pinionF1"
+                          @change="filechange5"
+                        />
+
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="pinionF2"
+                          @change="filechange6"
+                        />
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="pinionP1"
+                          @change="filechange7"
+                        />
+                        <input
+                          hidden="true"
+                          type="file"
+                          ref="pinionP2"
+                          @change="filechange8"
+                        />
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="pf1()">Pinion Feasible1</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namepf1 }}</p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="pf2()">Pinion Feasible2</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namepf2 }}</p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="pp1()">Pinion Physical1</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namepp1 }}</p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row align="center" justify="center">
+                        <v-col cols="6">
+                          <v-btn @click="pp2()">Pinion Physical2</v-btn>
+                        </v-col>
+                        <v-col cols="6" align="left" justify="left">
+                          <p class="mb-0">{{ postdata.namepp2 }}</p>
+                        </v-col>
+                      </v-row>
+                    </div>
+                  </div>
+                </v-col>
+              </v-row>
+            </div>
+          </v-container>
+
+          
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text class="ma-2 px-2" @click="dialog = false">
+            Cancel
+          </v-btn>
+          <v-btn color="primary" text @click="save()" class="ma-2 px-2">
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+</div>
+  </v-app>
+</template>
+
+<script>
+import axios from "axios";
+
+import * as firebase from "firebase/app";
+
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBsAdm3QQTHlmwMihKSaXcEjcx-cwOeX8c",
+  authDomain: "project-360e7.firebaseapp.com",
+  projectId: "project-360e7",
+  storageBucket: "project-360e7.appspot.com",
+  messagingSenderId: "921356772970",
+  appId: "1:921356772970:web:362f876a5d94e3ae280c13",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+export default {
+  data() {
+    return {
+      select: { state: "" },
+      Project1List: ["JJ01", "JJ02", "JJ03","JJ04"],
+      items1: [1000, 2000, 3000, 4000, 5000, 6000, 4500, 5500],
+      NominalList: [1000, 2000, 3000, 4000, 5000, 6000, 4500, 5500],
+
+      GearPair: ["A1B1", "A1B2", "A1B3", "A1B4"],
+
+      ModelList: ["31XX", "32XX","33XX","34XX"],
+      DesignList:["AAM","AAM1","AAM2","AAM3"],
+
+
+    
+
+
+      singleSelect1: true,
+      selected1: [],
+      disableb: true,
+      dialog: false,
+      dialog1: false,
+
+      path1: "/Dashboard/ ",
+      path2: "/Dashboard/",
+      checkpointer1: false,
+
+      SAM: [],
+
+      selectedfile: null,
+
+      Sgf1: false,
+      Sgf2: false,
+      Sgp1: false,
+      Sgp2: false,
+
+      Spf1: false,
+      Spf2: false,
+      Spp1: false,
+      Spp2: false,
+
+      namegf1: null,
+
+      projectclick: false,
+      dtselected: false,
+      selectedStep: "",
+      allselect: false,
+      duplicate: "sam",
+
+      postdata: {
+        Project1:"",
+        Project: "",
+        Model:"",
+        Design: "",
+        NominalTorque: "",
+        JJ01: "",
+    
+        GF1: "",
+        GF2: "",
+        GP1: "",
+        GP2: "",
+        PF1: "",
+        PF2: "",
+        PP1: "",
+        PP2: "",
+        namegf1: "no file selected",
+        namegf2: "no file selected",
+        namegp1: "no file selected",
+        namegp2: "no file selected",
+
+        namepf1: "no file selected",
+        namepf2: "no file selected",
+        namepp1: "no file selected",
+        namepp2: "no file selected",
+      },
+
+      editdata: {
+        Project1:"",
+        Project: "",
+        Model:"",
+        Design: "",
+        NominalTorque: "",
+        JJ01: "",
+        
+        GF1: "",
+        GF2: "",
+        GP1: "",
+        GP2: "",
+        PF1: "",
+        PF2: "",
+        PP1: "",
+        PP2: "",
+        namegf1: "no file selected",
+        namegf2: "no file selected",
+        namegp1: "no file selected",
+        namegp2: "no file selected",
+
+        namepf1: "no file selected",
+        namepf2: "no file selected",
+        namepp1: "no file selected",
+        namepp2: "no file selected",
+       
+      },
+    };
+  },
+  computed: {
+  
+  },
+  mounted() {
+   
+  },
+  created() {},
+  methods: {
+    Project1selected() {
+      this.projectclick = true;
+       console.log("size : ",this.GearPair.length)
+let gearpair1=[];
+let j=1;
+      for(let i=0;i<this.GearPair.length;i++){
+
+       gearpair1.push(this.postdata.Project1+"A1B"+j )
+       j++;
+      }
+      this.GearPair=gearpair1
+
+    },
+    DTselected() {
+      console.log("DT : ", this.postdata.JJ01);
+
+        this.dtselected = true;
+    },
+
+    AppSelect() {
+    
+    },
+
+    async getapicall1() {
+      await axios
+
+        .get(
+          "http://localhost:3000/DATA1?Project=" +
+            this.postdata.Project +
+            "&JJ01=" +
+            this.postdata.JJ01 +
+            "&Column3=" +
+            this.postdata.Column3
+        )
+        .then((resp) => {
+          this.SAM = resp.data;
+          console.log("this.sam : ", this.SAM);
+
+          if (this.SAM.length == 0) {
+            console.log("not duplicate pair is present");
+            this.duplicate = "sam1";
+          } else {
+            alert("Inserted duplicate Data...");
+            this.postdata.Column3 = "";
+            // this.duplicate=true;
+            this.duplicate = "sam2";
+            // this.postdata.JJ01 = null;
+          }
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+        });
+    },
+
+    selectpost(sp) {
+      console.log("selected post : ", sp);
+
+    //   if (this.postdata.Project != "") {
+    //     if (this.postdata.JJ01 != null) {
+    //       if (this.postdata.Column3 != "") {
+    //         this.allselect = true;
+    //         // this.getapicall1();
+    //       } else {
+    //         alert("Enter Application...");
+    //         this.postdata.Report = null;
+    //       }
+    //     } else {
+    //       alert("Enter Differential Torque...");
+    //       this.postdata.Report = null;
+    //     }
+    //   } else {
+    //     alert("Enter Gear Pair...");
+    //     this.postdata.Report = null;
+    //   }
+    //   this.selectedStep = sp;
+    },
+
+    save2() {
+      this.getapicall1();
+      console.log("duplicate is : ", this.duplicate);
+      if (this.duplicate == "sam2") {
+        alert("Inserting wrong data...");
+      } else {
+        this.gtpr.Project = this.postdata.Project;
+        this.pcd.Project = this.postdata.Project;
+        this.ptgr.Project = this.postdata.Project;
+
+        this.gtpr.JJ01 = this.postdata.JJ01;
+        this.pcd.JJ01 = this.postdata.JJ01;
+        this.ptgr.JJ01 = this.postdata.JJ01;
+
+        this.gtpr.Column3 = this.postdata.Column3;
+        this.pcd.Column3 = this.postdata.Column3;
+        this.ptgr.Column3 = this.postdata.Column3;
+
+        console.log("GTPR : ", this.gtpr);
+        console.log("PCD : ", this.pcd);
+        console.log("PTGR : ", this.ptgr);
+
+        if (this.postdata.Report == "GTPR") {
+          this.gtpr = this.postdata;
+          console.log("This is gtpr ");
+          this.save1();
+        } else if (this.postdata.Report == "PCD") {
+          this.pcd = this.postdata;
+          this.save1();
+          // this.postdata = this.gtpr;
+        } else if (this.postdata.Report == "PTGR") {
+          this.ptgr = this.postdata;
+          // this.postdata = this.gtpr;
+          this.save1();
+        } else {
+          alert("Please enter STEP.......");
+        }
+      }
+    },
+
+    async getapicall() {
+      console.log("previous postdata : ", this.postdata);
+
+      await axios
+
+        .get("http://localhost:3000/DATA1/")
+        .then((resp) => {
+          this.SAM = resp.data;
+          this.SAM.reverse();
+          console.log("this.sam : ", this.SAM);
+          console.log("selected array : ", this.selected1);
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+        });
+    },
+
+    async save() {
+      this.dialog = false;
+
+      await axios
+        .post("http://localhost:3000/D", this.postdata)
+        .then((result1) => {
+          console.log("Result : ", result1);
+          // this.pcddata();
+
+          this.postdata = {
+            Project1:"",
+        Project: "",
+        Model:"",
+        Design: "",
+        NominalTorque: "",
+        JJ01: "",
+           
+            GF1: "",
+            GF2: "",
+            GP1: "",
+            GP2: "",
+            PF1: "",
+            PF2: "",
+            PP1: "",
+            PP2: "",
+            namegf1: "no file selected",
+            namegf2: "no file selected",
+            namegp1: "no file selected",
+            namegp2: "no file selected",
+
+            namepf1: "no file selected",
+            namepf2: "no file selected",
+            namepp1: "no file selected",
+            namepp2: "no file selected",
+          };
+        //   this.getapicall();
+          console.log("data inserted : ", this.SAM);
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+        });
+    },
+
+ 
+
+   
+
+    edit(inputd) {
+      this.editdata = inputd[0];
+      this.dialog1 = true;
+      console.log("input selected : ", this.editdata.id);
+      console.log("editdata selected : ", this.editdata);
+    },
+
+    async update() {
+      this.dialog1 = false;
+      console.log("edited data in update : ", this.editdata);
+
+      await axios
+        .put("http://localhost:3000/DATA1/" + this.editdata.id, this.editdata)
+        .then((resp) => {
+          console.log("Responce is : ", resp);
+          this.getapicall();
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+        });
+    },
+
+    /**
+     * Filter for calories column.
+     * @param value Value to be tested.
+     * @returns {boolean}
+     */
+    DTFilter(value) {
+      // If this filter has no value we just skip the entire filter.
+      if (!this.DTFilterValue) {
+        return true;
+      }
+
+      // Check if the current loop value (The calories value)
+      // equals to the selected value at the <v-select>.
+      return value == this.DTFilterValue;
+    },
+
+    Selecteditm1() {
+      this.path2 = this.path2 + this.DTFilterValue;
+      this.checkpointer1 = true;
+      this.disableb = false;
+    },
+    dash2() {
+      if (this.checkpointer1) {
+        this.$router.push(this.path2);
+      } else {
+        this.$router.push(this.path1);
+      }
+    },
+
+    gf1() {
+      this.$refs.gearF1.click();
+    },
+    filechange1(event) {
+      console.log("file1 : ", event.target.files[0].name);
+      this.postdata.namegf1 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Sgf1 = true;
+
+      this.geturl("gf1");
+    },
+    gf2() {
+      this.$refs.gearF2.click();
+    },
+    filechange2(event) {
+      console.log("file2 : ", event.target.files[0].name);
+      this.postdata.namegf2 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Sgf2 = true;
+      this.geturl("gf2");
+    },
+    gp1() {
+      this.$refs.gearP1.click();
+    },
+    filechange3(event) {
+      console.log("file3 : ", event.target.files[0].name);
+      this.postdata.namegp1 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Sgp1 = true;
+      this.geturl("gp1");
+    },
+    gp2() {
+      this.$refs.gearP2.click();
+    },
+    filechange4(event) {
+      console.log("file4 : ", event.target.files[0].name);
+      this.postdata.namegp2 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Spf2 = true;
+      this.geturl("gp2");
+    },
+
+    pf1() {
+      this.$refs.pinionF1.click();
+    },
+    filechange5(event) {
+      console.log("file5 : ", event.target.files[0].name);
+      this.postdata.namepf1 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Spf1 = true;
+      this.geturl("pf1");
+    },
+    pf2() {
+      this.$refs.pinionF2.click();
+    },
+    filechange6(event) {
+      console.log("file6 : ", event.target.files[0].name);
+      this.postdata.namepf2 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Spf2 = true;
+      this.geturl("pf2");
+    },
+    pp1() {
+      this.$refs.pinionP1.click();
+    },
+    filechange7(event) {
+      console.log("file7 : ", event.target.files[0].name);
+      this.postdata.namepp1 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Spp1 = true;
+      this.geturl("pp1");
+    },
+    pp2() {
+      this.$refs.pinionP2.click();
+    },
+    filechange8(event) {
+      console.log("file8 : ", event.target.files[0].name);
+      this.postdata.namepp2 = event.target.files[0].name;
+      this.selectedfile = event.target.files[0];
+      this.Spp2 = true;
+      this.geturl("pp2");
+    },
+
+    geturl(option) {
+      const storage = getStorage();
+
+      const metadata = {
+        contentType: "image/jpeg",
+      };
+
+      // Create a reference to 'mountains.jpg'
+      const mountainsRef = ref(storage, "data/" + this.selectedfile.name);
+
+      const Task = uploadBytesResumable(
+        mountainsRef,
+        this.selectedfile,
+        metadata
+      );
+
+      Task.on(
+        "state_changed",
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+
+            // ...
+
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(Task.snapshot.ref).then((downloadURL) => {
+            console.log("option : ", option);
+
+            if (option == "gf1") {
+              this.postdata.GF1 = downloadURL;
+            } else if (option == "gf2") {
+              this.postdata.GF2 = downloadURL;
+            } else if (option == "gp1") {
+              this.postdata.GP1 = downloadURL;
+            } else if (option == "gp2") {
+              this.postdata.GP2 = downloadURL;
+            } else if (option == "pf1") {
+              this.postdata.PF1 = downloadURL;
+            } else if (option == "pf2") {
+              this.postdata.PF2 = downloadURL;
+            } else if (option == "pp1") {
+              this.postdata.PP1 = downloadURL;
+            } else if (option == "pp2") {
+              this.postdata.PP2 = downloadURL;
+            } else {
+              console.log("else block");
+            }
+
+            this.samurl = downloadURL;
+            console.log("File available at : ", downloadURL);
+          });
+        }
+      );
+    },
+  },
+};
+</script>
