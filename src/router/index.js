@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import RegisterView from '../views/RegisterView'
-import AccountActivation from '../views/AccountActivation'
-import AccountCreated from '../views/AccountCreated'
+import DashboardPage from '../views/DashboardPage.vue'
+import DataPage from '../views/DataPage'
+import HomePage from '../views/HomePage'
+import FEAContact from '../views/FEAContactPage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,23 +19,23 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: AboutView
+    component: DataPage
   },
   {
     path: '/Dashboard/:Project',
     name: 'DashboardPage',
-    component: RegisterView
+    component: DashboardPage
 
   },
   {
     path: '/Home',
     name: 'HomePage',
-    component: AccountActivation
+    component: HomePage
   },
   {
     path: '/FEAContact',
     name: 'FEAContactPage',
-    component: AccountCreated
+    component: FEAContact
   }
 ]
 
