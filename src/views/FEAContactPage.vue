@@ -1,1131 +1,1128 @@
 <template>
   <v-app>
     <div class="text-left ml-10 mb-5">
-    <v-dialog v-model="dialog" width="900">
-      <template v-slot:activator="{ on, attrs }">
-        <v-row class="mt-8 ml-8">
-          <v-btn color="primary" class="white--text" v-bind="attrs" v-on="on">
-            <v-icon dark>mdi-plus</v-icon>Add
-          </v-btn>
+      <v-dialog v-model="dialog" width="900">
+        <template v-slot:activator="{ on, attrs }">
+          <v-row class="mt-8 ml-8">
+            <v-btn color="primary" class="white--text" v-bind="attrs" v-on="on">
+              <v-icon dark>mdi-plus</v-icon>Add
+            </v-btn>
 
-          <v-btn
-            color="primary"
-            class="white--text ml-3"
-            @click="edit(selected1)"
-            >EDIT</v-btn
-          >
-
-          <v-btn color="primary" class="white--text ml-3" to="/Home"
-            >HOME</v-btn
-          >
-        </v-row>
-      </template>
-
-      <v-card>
-        <v-card-title class="text-h5 grey lighten-2">
-          ADD DATA HERE
-        </v-card-title>
-
-        <v-divider></v-divider>
-
-        <!-- ---------------------------------------------------------------------------------------------------- -->
-
-        <v-card-text>
-          <div ma-0>
-
-            <v-row class="text-center" justify="center" align="center">
-              <v-col cols="3">
-                <v-header class="font-weight-medium"> Project </v-header>
-              </v-col>
-
-              <v-col cols="3">
-                <v-select
-                  v-model="postdata.Project1"
-                  :items="Project1List"
-                  label="Select"
-                  persistent-hint
-                  return-object
-                  single-line
-                  @change="Project1selected()"
-                  :rules="[(v) => !!v || 'Project is required']"
-                  required
-                >
-                </v-select>
-              </v-col>
-            </v-row>
-
-
-            <v-row class="text-center" justify="center" align="center">
-              <v-col cols="3">
-                <v-header class="font-weight-medium"> GEAR PAIR </v-header>
-              </v-col>
-
-              <v-col cols="3">
-                <v-select
-                  v-model="postdata.Project"
-                  :items="GearPair"
-                  label="Select"
-                  persistent-hint
-                  return-object
-                  single-line
-                  @change="Projectselected()"
-                  :rules="[(v) => !!v || 'Gear Pair is required']"
-                  required
-                >
-                </v-select>
-              </v-col>
-            </v-row>
-
-      
-
-            <v-row class="text-center" justify="center" align="center">
-              <v-col cols="3">
-                <v-header class="font-weight-medium"> Model </v-header>
-              </v-col>
-
-              <v-col cols="3">
-                <v-select
-                  v-model="postdata.Model"
-                  :items="ModelList"
-                  label="Select"
-                  persistent-hint
-                  return-object
-                  single-line
-                  @change="ModelSelected()"
-                  :rules="[(v) => !!v || 'Model is required']"
-                  required
-                >
-                </v-select>
-              </v-col>
-            </v-row>
-
-            <v-row class="text-center" justify="center" align="center">
-              <v-col cols="3">
-                <v-header class="font-weight-medium" pa-0> Design </v-header>
-              </v-col>
-
-              <v-col cols="3">
-                <v-select
-                  v-model="postdata.Design"
-                  :items="DesignList"
-                  label="Select"
-                  persistent-hint
-                  return-object
-                  single-line
-                  @change="DesignSelected()"
-                  :rules="[(v) => !!v || 'Report is required']"
-                  required
-                >
-                </v-select>
-              </v-col>
-            </v-row>
-
-
-            <v-row
-              class="text-center"
-              justify="center"
-              align="center"
-              pa-0
-              ma-0
-              mt-0
+            <v-btn
+              color="primary"
+              class="white--text ml-3"
+              @click="edit(selected1)"
+              >EDIT</v-btn
             >
-              <v-col cols="3" pa-0 ma-0>
-                <v-header class="font-weight-medium" pa-0 ma-0>
-                 Nominal/Design Torque
-                </v-header>
-              </v-col>
 
-              <v-col cols="3" pa-0 ma-0>
-                <v-select
-                  v-model="postdata.NominalTorque"
-                  :items="NominalList"
-                  label="Select"
-                  persistent-hint
-                  return-object
-                  single-line
-                  @change="NTselected()"
-                  :rules="[(v) => !!v || 'Nominal Torque is required']"
-                  required
-                >
-                </v-select>
-              </v-col>
-            </v-row>
-
-            <v-row
-              class="text-center"
-              justify="center"
-              align="center"
-              pa-0
-              ma-0
-              mt-0
+            <v-btn color="primary" class="white--text ml-3" to="/Home"
+              >HOME</v-btn
             >
-              <v-col cols="3" pa-0 ma-0>
-                <v-header class="font-weight-medium" pa-0 ma-0>
-                  Differential Torque
-                </v-header>
-              </v-col>
+          </v-row>
+        </template>
 
-              <v-col cols="3" pa-0 ma-0>
-                <v-select
-                  v-model="postdata.JJ01"
-                  :items="items1"
-                  label="Select"
-                  persistent-hint
-                  return-object
-                  single-line
-                  @change="DTselected()"
-                  :rules="[(v) => !!v || 'Differential Torque is required']"
-                  required
-                >
-                </v-select>
-              </v-col>
-            </v-row>
-          </div>
-          <br /><br />
+        <v-card>
+          <v-card-title class="text-h5 grey lighten-2">
+            ADD DATA HERE
+          </v-card-title>
 
-          <v-container>
-            <!-- --------------------------------------------------------------------------------------------------- -->
+          <v-divider></v-divider>
 
-            <div>
-              <v-row>
-                <v-col cols="6">
-                  <v-row justify="center">
-                    <v-col cols="8" align="center" pt-0 ma-0>
-                      <p class="font-weight-bold" mb-0 pa-0>GEAR</p>
-                    </v-col>
-                  </v-row>
+          <!-- ---------------------------------------------------------------------------------------------------- -->
 
-                  <div>
-                    <div>
-                      <v-row align="center" justify="center">
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="gearF1"
-                          @change="filechange1"
-                        />
-
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="gearF2"
-                          @change="filechange2"
-                        />
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="gearP1"
-                          @change="filechange3"
-                        />
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="gearP2"
-                          @change="filechange4"
-                        />
-                      </v-row>
-
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="gf1()">Gear Feasible1</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namegf1 }}</p>
-                        </v-col>
-                      </v-row>
-
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="gf2()">Gear Feasible2</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namegf2 }}</p>
-                        </v-col>
-                      </v-row>
-
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="gp1()">Gear Physical1</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namegp1 }}</p>
-                        </v-col>
-                      </v-row>
-
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="gp2()">Gear Physical2</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namegp2 }}</p>
-                        </v-col>
-                      </v-row>
-                    </div>
-                  </div>
+          <v-card-text>
+            <div ma-0>
+              <v-row class="text-center" justify="center" align="center">
+                <v-col cols="3">
+                  <v-header class="font-weight-medium"> Project </v-header>
                 </v-col>
 
-                <!-- *************************************** -->
+                <v-col cols="3">
+                  <v-select
+                    v-model="postdata.Project1"
+                    :items="Project1List"
+                    label="Select"
+                    persistent-hint
+                    return-object
+                    single-line
+                    @change="Project1selected()"
+                    :rules="[(v) => !!v || 'Project is required']"
+                    required
+                  >
+                  </v-select>
+                </v-col>
+              </v-row>
 
-                <v-col cols="6">
-                  <div>
-                    <v-row justify="center">
-                      <v-col cols="8" align="center">
-                        <p class="font-weight-bold" mb-0 pa-0>PINION</p>
-                      </v-col>
-                    </v-row>
-                  </div>
+              <v-row class="text-center" justify="center" align="center">
+                <v-col cols="3">
+                  <v-header class="font-weight-medium"> GEAR PAIR </v-header>
+                </v-col>
 
-                  <div>
-                    <div>
-                      <v-row align="left" justify="center">
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="pinionF1"
-                          @change="filechange5"
-                        />
+                <v-col cols="3">
+                  <v-select
+                    v-model="postdata.Project"
+                    :items="GearPair"
+                    label="Select"
+                    persistent-hint
+                    return-object
+                    single-line
+                    @change="Projectselected()"
+                    :rules="[(v) => !!v || 'Gear Pair is required']"
+                    required
+                  >
+                  </v-select>
+                </v-col>
+              </v-row>
 
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="pinionF2"
-                          @change="filechange6"
-                        />
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="pinionP1"
-                          @change="filechange7"
-                        />
-                        <input
-                          hidden="true"
-                          type="file"
-                          ref="pinionP2"
-                          @change="filechange8"
-                        />
-                      </v-row>
+              <v-row class="text-center" justify="center" align="center">
+                <v-col cols="3">
+                  <v-header class="font-weight-medium"> Model </v-header>
+                </v-col>
 
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="pf1()">Pinion Feasible1</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namepf1 }}</p>
-                        </v-col>
-                      </v-row>
+                <v-col cols="3">
+                  <v-select
+                    v-model="postdata.Model"
+                    :items="ModelList"
+                    label="Select"
+                    persistent-hint
+                    return-object
+                    single-line
+                    @change="ModelSelected()"
+                    :rules="[(v) => !!v || 'Model is required']"
+                    required
+                  >
+                  </v-select>
+                </v-col>
+              </v-row>
 
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="pf2()">Pinion Feasible2</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namepf2 }}</p>
-                        </v-col>
-                      </v-row>
+              <v-row class="text-center" justify="center" align="center">
+                <v-col cols="3">
+                  <v-header class="font-weight-medium" pa-0> Design </v-header>
+                </v-col>
 
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="pp1()">Pinion Physical1</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namepp1 }}</p>
-                        </v-col>
-                      </v-row>
+                <v-col cols="3">
+                  <v-select
+                    v-model="postdata.Design"
+                    :items="DesignList"
+                    label="Select"
+                    persistent-hint
+                    return-object
+                    single-line
+                    @change="DesignSelected()"
+                    :rules="[(v) => !!v || 'Report is required']"
+                    required
+                  >
+                  </v-select>
+                </v-col>
+              </v-row>
 
-                      <v-row align="center" justify="center">
-                        <v-col cols="6">
-                          <v-btn @click="pp2()">Pinion Physical2</v-btn>
-                        </v-col>
-                        <v-col cols="6" align="left" justify="left">
-                          <p class="mb-0">{{ postdata.namepp2 }}</p>
-                        </v-col>
-                      </v-row>
-                    </div>
-                  </div>
+              <v-row
+                class="text-center"
+                justify="center"
+                align="center"
+                pa-0
+                ma-0
+                mt-0
+              >
+                <v-col cols="3" pa-0 ma-0>
+                  <v-header class="font-weight-medium" pa-0 ma-0>
+                    Nominal/Design Torque
+                  </v-header>
+                </v-col>
+
+                <v-col cols="3" pa-0 ma-0>
+                  <v-select
+                    v-model="postdata.NominalTorque"
+                    :items="NominalList"
+                    label="Select"
+                    persistent-hint
+                    return-object
+                    single-line
+                    @change="NTselected()"
+                    :rules="[(v) => !!v || 'Nominal Torque is required']"
+                    required
+                  >
+                  </v-select>
+                </v-col>
+              </v-row>
+
+              <v-row
+                class="text-center"
+                justify="center"
+                align="center"
+                pa-0
+                ma-0
+                mt-0
+              >
+                <v-col cols="3" pa-0 ma-0>
+                  <v-header class="font-weight-medium" pa-0 ma-0>
+                    Differential Torque
+                  </v-header>
+                </v-col>
+
+                <v-col cols="3" pa-0 ma-0>
+                  <v-select
+                    v-model="postdata.JJ01"
+                    :items="items1"
+                    label="Select"
+                    persistent-hint
+                    return-object
+                    single-line
+                    @change="DTselected()"
+                    :rules="[(v) => !!v || 'Differential Torque is required']"
+                    required
+                  >
+                  </v-select>
                 </v-col>
               </v-row>
             </div>
+            <br /><br />
 
+            <v-container>
+              <!-- --------------------------------------------------------------------------------------------------- -->
 
-          </v-container>
+              <div>
+                <v-row>
+                  <v-col cols="6">
+                    <v-row justify="center">
+                      <v-col cols="8" align="center" pt-0 ma-0>
+                        <p class="font-weight-bold" mb-0 pa-0>GEAR</p>
+                      </v-col>
+                    </v-row>
 
-          
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text class="ma-2 px-2" @click="dialog = false">
-            Cancel
-          </v-btn>
-          <v-btn color="primary" text @click="save()" class="ma-2 px-2">
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-</div>
+                    <div>
+                      <div>
+                        <v-row align="center" justify="center">
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="gearF1"
+                            @change="filechange1"
+                          />
 
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="gearF2"
+                            @change="filechange2"
+                          />
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="gearP1"
+                            @change="filechange3"
+                          />
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="gearP2"
+                            @change="filechange4"
+                          />
+                        </v-row>
 
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="gf1()">Gear Feasible1</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namegf1 }}</p>
+                          </v-col>
+                        </v-row>
 
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="gf2()">Gear Feasible2</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namegf2 }}</p>
+                          </v-col>
+                        </v-row>
 
-<div class="mt-10 ml-8">
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="gp1()">Gear Physical1</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namegp1 }}</p>
+                          </v-col>
+                        </v-row>
 
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="gp2()">Gear Physical2</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namegp2 }}</p>
+                          </v-col>
+                        </v-row>
+                      </div>
+                    </div>
+                  </v-col>
 
-<table cellspacing="0" border="0">
-    <colgroup span="15" width="64"></colgroup>
-    <tr>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 2px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        colspan="18"
-        height="24"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" size="4" color="#000000"
-            >Contact Stress Plot of all Gear Pair at different differential Torque
-            [Considering 2 pinion application]</font
-          ></b
-        >
-      </td>
-    </tr>
-    <tr>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 2px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        height="20"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-      </td>
-      <td
-        style="border-top: 2px solid #000000; border-right: 1px solid #000000"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 2px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        colspan="11"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">FEA Contact Stress Plot</font></b>
-      </td>
-    </tr>
-    <tr>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 2px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        height="68"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">S.N.</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">Project</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">Gear Pair</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">Model</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">Design</font></b>
-      </td>
-      <td
-        style="border-top: 2px solid #000000; border-left: 1px solid #000000"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"
-            >Nominal /Design <br />Torque <br />[Nm]</font
-          ></b
-        >
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 2px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">Parts</font></b>
-      </td>
-      <td
-        style="
-          border-bottom: 2px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        colspan="2"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdval="0"
-        sdnum="1033;"
-      >
-        <b><font face="Century Gothic" color="#000000">2000</font></b>
-      </td>
-      <td
-        style="
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        colspan="2"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdval="1000"
-        sdnum="1033;0;0"
-      >
-        <b><font face="Century Gothic" color="#000000">3000</font></b>
-      </td>
-      <td
-        style="
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        colspan="2"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdval="2000"
-        sdnum="1033;0;0"
-      >
-        <b><font face="Century Gothic" color="#000000">4000</font></b>
-      </td>
-      <td
-        style="
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        colspan="2"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdval="4000"
-        sdnum="1033;0;0"
-      >
-        <b><font face="Century Gothic" color="#000000">5000</font></b>
-      </td>
-      <td
-        style="
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        colspan="2"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdval="4000"
-        sdnum="1033;0;0"
-      >
-        <b><font face="Century Gothic" color="#000000">6000</font></b>
-      </td>
-    </tr>
-    <tr>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 2px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="6"
-        height="116"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-        sdval="1"
-        sdnum="1033;"
-      >
-        <b><font face="Century Gothic" color="#000000">1</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="6"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b><font face="Century Gothic" color="#000000">JJ01</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="6"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b><font face="Century Gothic" color="#000000">JJ01-A1B1</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="6"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b><font face="Century Gothic" color="#000000">31XX</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="6"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b><font face="Century Gothic" color="#000000">AAM</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="6"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdval="4000"
-        sdnum="1033;"
-      >
-        <b><font face="Century Gothic" color="#000000">4000</font></b>
-      </td>
-      <td
-        style="
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">Gear</font></b>
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-        <img src="../assets/img/g1.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-        <img src="../assets/img/g2.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/g3.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/g4.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/g5.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/g6.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/g7.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 2px solid #000000;
-          border-bottom: 1px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/g8.jpg" width="100" height="100">
-      </td>
-      <td
-      style="
-        border-top: 2px solid #000000;
-        border-bottom: 1px solid #000000;
-        border-left: 1px solid #000000;
-        border-right: 2px solid #000000;
-      "
-      rowspan="3"
-      align="center"
-      valign="middle"
-      bgcolor="#00B050"
-      sdnum="1033;0;0"
-    >
-      <font face="Century Gothic" color="#000000"><br /></font>
-      <img src="../assets/img/g9.jpg" width="100" height="100">
-    </td>
-    <td
-    style="
-      border-top: 2px solid #000000;
-      border-bottom: 1px solid #000000;
-      border-left: 1px solid #000000;
-      border-right: 2px solid #000000;
-    "
-    rowspan="3"
-    align="center"
-    valign="middle"
-    bgcolor="#00B050"
-    sdnum="1033;0;0"
-  >
-    <font face="Century Gothic" color="#000000"><br /></font>
-    <img src="../assets/img/g10.jpg" width="100" height="100">
-  </td>
-    </tr>
-    <tr></tr>
-    <tr></tr>
-    <tr>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#BFBFBF"
-      >
-        <b><font face="Century Gothic" color="#000000">Pinion</font></b>
-        <!-- <img src="g9.jpg" width="100" height="100"> -->
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-        <img src="../assets/img/p1.jpg" width="100" height="100">
-        sam
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-      >
-        <b
-          ><font face="Century Gothic" color="#000000"><br /></font
-        ></b>
-        <img src="../assets/img/p2.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p3.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p4.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p5.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p6.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 1px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p7.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p8.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p9.jpg" width="100" height="100">
-      </td>
-      <td
-        style="
-          border-top: 1px solid #000000;
-          border-bottom: 2px solid #000000;
-          border-left: 1px solid #000000;
-          border-right: 2px solid #000000;
-        "
-        rowspan="3"
-        align="center"
-        valign="middle"
-        bgcolor="#00B050"
-        sdnum="1033;0;0"
-      >
-        <font face="Century Gothic" color="#000000"><br /></font>
-        <img src="../assets/img/p10.jpg" width="100" height="100">
-      </td>
-    </tr>
-    <tr></tr>
-    <tr></tr>
-  </table>
+                  <!-- *************************************** -->
 
-</div>
+                  <v-col cols="6">
+                    <div>
+                      <v-row justify="center">
+                        <v-col cols="8" align="center">
+                          <p class="font-weight-bold" mb-0 pa-0>PINION</p>
+                        </v-col>
+                      </v-row>
+                    </div>
 
+                    <div>
+                      <div>
+                        <v-row align="left" justify="center">
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="pinionF1"
+                            @change="filechange5"
+                          />
+
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="pinionF2"
+                            @change="filechange6"
+                          />
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="pinionP1"
+                            @change="filechange7"
+                          />
+                          <input
+                            hidden="true"
+                            type="file"
+                            ref="pinionP2"
+                            @change="filechange8"
+                          />
+                        </v-row>
+
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="pf1()">Pinion Feasible1</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namepf1 }}</p>
+                          </v-col>
+                        </v-row>
+
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="pf2()">Pinion Feasible2</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namepf2 }}</p>
+                          </v-col>
+                        </v-row>
+
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="pp1()">Pinion Physical1</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namepp1 }}</p>
+                          </v-col>
+                        </v-row>
+
+                        <v-row align="center" justify="center">
+                          <v-col cols="6">
+                            <v-btn @click="pp2()">Pinion Physical2</v-btn>
+                          </v-col>
+                          <v-col cols="6" align="left" justify="left">
+                            <p class="mb-0">{{ postdata.namepp2 }}</p>
+                          </v-col>
+                        </v-row>
+                      </div>
+                    </div>
+                  </v-col>
+                </v-row>
+              </div>
+            </v-container>
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              text
+              class="ma-2 px-2"
+              @click="dialog = false"
+            >
+              Cancel
+            </v-btn>
+            <v-btn color="primary" text @click="save()" class="ma-2 px-2">
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
+
+    <div class="mt-10 ml-8">
+      <table cellspacing="0" border="0">
+        <colgroup span="15" width="64"></colgroup>
+        <tr>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 2px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            colspan="18"
+            height="24"
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" size="4" color="#000000"
+                >Contact Stress Plot of all Gear Pair at different differential
+                Torque [Considering 2 pinion application]</font
+              ></b
+            >
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 2px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            height="20"
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 2px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            colspan="11"
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"
+                >FEA Contact Stress Plot</font
+              ></b
+            >
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 2px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            height="68"
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">S.N.</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">Project</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">Gear Pair</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">Model</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">Design</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-left: 1px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"
+                >Nominal /Design <br />Torque <br />[Nm]</font
+              ></b
+            >
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 2px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">Parts</font></b>
+          </td>
+          <td
+            style="
+              border-bottom: 2px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            colspan="2"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdval="0"
+            sdnum="1033;"
+          >
+            <b><font face="Century Gothic" color="#000000">2000</font></b>
+          </td>
+          <td
+            style="
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            colspan="2"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdval="1000"
+            sdnum="1033;0;0"
+          >
+            <b><font face="Century Gothic" color="#000000">3000</font></b>
+          </td>
+          <td
+            style="
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            colspan="2"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdval="2000"
+            sdnum="1033;0;0"
+          >
+            <b><font face="Century Gothic" color="#000000">4000</font></b>
+          </td>
+          <td
+            style="
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            colspan="2"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdval="4000"
+            sdnum="1033;0;0"
+          >
+            <b><font face="Century Gothic" color="#000000">5000</font></b>
+          </td>
+          <td
+            style="
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            colspan="2"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdval="4000"
+            sdnum="1033;0;0"
+          >
+            <b><font face="Century Gothic" color="#000000">6000</font></b>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 2px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="6"
+            height="116"
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+            sdval="1"
+            sdnum="1033;"
+          >
+            <b><font face="Century Gothic" color="#000000">1</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="6"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b><font face="Century Gothic" color="#000000">JJ01</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="6"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b><font face="Century Gothic" color="#000000">JJ01-A1B1</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="6"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b><font face="Century Gothic" color="#000000">31XX</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="6"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b><font face="Century Gothic" color="#000000">AAM</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="6"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdval="4000"
+            sdnum="1033;"
+          >
+            <b><font face="Century Gothic" color="#000000">4000</font></b>
+          </td>
+          <td
+            style="
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">Gear</font></b>
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+            <img src="../assets/img/g1.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+            <img src="../assets/img/g2.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g3.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g4.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g5.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g6.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g7.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g8.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g9.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 2px solid #000000;
+              border-bottom: 1px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/g10.jpg" width="100" height="100" />
+          </td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#BFBFBF"
+          >
+            <b><font face="Century Gothic" color="#000000">Pinion</font></b>
+           
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+            <img src="../assets/img/p1.jpg" width="100" height="100" />
+           
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+          >
+            <b
+              ><font face="Century Gothic" color="#000000"><br /></font
+            ></b>
+            <img src="../assets/img/p2.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p3.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p4.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p5.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p6.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 1px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p7.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p8.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p9.jpg" width="100" height="100" />
+          </td>
+          <td
+            style="
+              border-top: 1px solid #000000;
+              border-bottom: 2px solid #000000;
+              border-left: 1px solid #000000;
+              border-right: 2px solid #000000;
+            "
+            rowspan="3"
+            align="center"
+            valign="middle"
+            bgcolor="#00B050"
+            sdnum="1033;0;0"
+          >
+            <font face="Century Gothic" color="#000000"><br /></font>
+            <img src="../assets/img/p10.jpg" width="100" height="100" />
+          </td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+      </table>
+    </div> 
   </v-app>
 </template>
 
-
-
-<style type="text/css">
+<!-- <style type="text/css">
 body,
 div,
 table,
@@ -1156,8 +1153,7 @@ a.comment-indicator {
 comment {
   display: none;
 }
-</style>
-
+</style> -->
 
 <script>
 import axios from "axios";
@@ -1187,18 +1183,14 @@ export default {
   data() {
     return {
       select: { state: "" },
-      Project1List: ["JJ01", "JJ02", "JJ03","JJ04"],
+      Project1List: ["JJ01", "JJ02", "JJ03", "JJ04"],
       items1: [1000, 2000, 3000, 4000, 5000, 6000, 4500, 5500],
       NominalList: [1000, 2000, 3000, 4000, 5000, 6000, 4500, 5500],
 
       GearPair: ["A1B1", "A1B2", "A1B3", "A1B4"],
 
-      ModelList: ["31XX", "32XX","33XX","34XX"],
-      DesignList:["AAM","AAM1","AAM2","AAM3"],
-
-
-    
-
+      ModelList: ["31XX", "32XX", "33XX", "34XX"],
+      DesignList: ["AAM", "AAM1", "AAM2", "AAM3"],
 
       singleSelect1: true,
       selected1: [],
@@ -1233,13 +1225,13 @@ export default {
       duplicate: "sam",
 
       postdata: {
-        Project1:"",
+        Project1: "",
         Project: "",
-        Model:"",
+        Model: "",
         Design: "",
         NominalTorque: "",
         JJ01: "",
-    
+
         GF1: "",
         GF2: "",
         GP1: "",
@@ -1260,13 +1252,13 @@ export default {
       },
 
       editdata: {
-        Project1:"",
+        Project1: "",
         Project: "",
-        Model:"",
+        Model: "",
         Design: "",
         NominalTorque: "",
         JJ01: "",
-        
+
         GF1: "",
         GF2: "",
         GP1: "",
@@ -1284,40 +1276,31 @@ export default {
         namepf2: "no file selected",
         namepp1: "no file selected",
         namepp2: "no file selected",
-       
       },
     };
   },
-  computed: {
-  
-  },
-  mounted() {
-   
-  },
+  computed: {},
+  mounted() {},
   created() {},
   methods: {
     Project1selected() {
       this.projectclick = true;
-       console.log("size : ",this.GearPair.length)
-let gearpair1=[];
-let j=1;
-      for(let i=0;i<this.GearPair.length;i++){
-
-       gearpair1.push(this.postdata.Project1+"A1B"+j )
-       j++;
+      console.log("size : ", this.GearPair.length);
+      let gearpair1 = [];
+      let j = 1;
+      for (let i = 0; i < this.GearPair.length; i++) {
+        gearpair1.push(this.postdata.Project1 + "A1B" + j);
+        j++;
       }
-      this.GearPair=gearpair1
-
+      this.GearPair = gearpair1;
     },
     DTselected() {
       console.log("DT : ", this.postdata.JJ01);
 
-        this.dtselected = true;
+      this.dtselected = true;
     },
 
-    AppSelect() {
-    
-    },
+    AppSelect() {},
 
     async getapicall1() {
       await axios
@@ -1353,24 +1336,24 @@ let j=1;
     selectpost(sp) {
       console.log("selected post : ", sp);
 
-    //   if (this.postdata.Project != "") {
-    //     if (this.postdata.JJ01 != null) {
-    //       if (this.postdata.Column3 != "") {
-    //         this.allselect = true;
-    //         // this.getapicall1();
-    //       } else {
-    //         alert("Enter Application...");
-    //         this.postdata.Report = null;
-    //       }
-    //     } else {
-    //       alert("Enter Differential Torque...");
-    //       this.postdata.Report = null;
-    //     }
-    //   } else {
-    //     alert("Enter Gear Pair...");
-    //     this.postdata.Report = null;
-    //   }
-    //   this.selectedStep = sp;
+      //   if (this.postdata.Project != "") {
+      //     if (this.postdata.JJ01 != null) {
+      //       if (this.postdata.Column3 != "") {
+      //         this.allselect = true;
+      //         // this.getapicall1();
+      //       } else {
+      //         alert("Enter Application...");
+      //         this.postdata.Report = null;
+      //       }
+      //     } else {
+      //       alert("Enter Differential Torque...");
+      //       this.postdata.Report = null;
+      //     }
+      //   } else {
+      //     alert("Enter Gear Pair...");
+      //     this.postdata.Report = null;
+      //   }
+      //   this.selectedStep = sp;
     },
 
     save2() {
@@ -1434,19 +1417,20 @@ let j=1;
       this.dialog = false;
 
       await axios
-        .post("http://localhost:8083/api/items", this.postdata)
+        // .post("http://localhost:8083/api/items", this.postdata)
+        .post("http://localhost:3000/DATA1/", this.postdata)
         .then((result1) => {
           console.log("Result : ", result1);
           // this.pcddata();
 
           this.postdata = {
-            Project1:"",
-        Project: "",
-        Model:"",
-        Design: "",
-        NominalTorque: "",
-        JJ01: "",
-           
+            Project1: "",
+            Project: "",
+            Model: "",
+            Design: "",
+            NominalTorque: "",
+            JJ01: "",
+
             GF1: "",
             GF2: "",
             GP1: "",
@@ -1465,17 +1449,13 @@ let j=1;
             namepp1: "no file selected",
             namepp2: "no file selected",
           };
-        //   this.getapicall();
+          //   this.getapicall();
           console.log("data inserted : ", this.SAM);
         })
         .catch((err) => {
           console.log("Error : ", err);
         });
     },
-
- 
-
-   
 
     edit(inputd) {
       this.editdata = inputd[0];
