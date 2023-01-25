@@ -268,7 +268,7 @@ export default {
   },
   methods: {
     selectedI() {
-      console.log("selected item is : ", this.DTFilterValue);
+      console.log("selected item is : ",this.DTFilterValue);
       this.getapicall();
     },
 
