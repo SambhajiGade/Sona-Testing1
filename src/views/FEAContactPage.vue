@@ -345,6 +345,8 @@
                 </v-col>
               </v-row>
             </div>
+
+
           </v-container>
 
           
@@ -362,8 +364,800 @@
       </v-card>
     </v-dialog>
 </div>
+
+
+
+
+<div class="mt-10 ml-8">
+
+
+<table cellspacing="0" border="0">
+    <colgroup span="15" width="64"></colgroup>
+    <tr>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 2px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        colspan="18"
+        height="24"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" size="4" color="#000000"
+            >Contact Stress Plot of all Gear Pair at different differential Torque
+            [Considering 2 pinion application]</font
+          ></b
+        >
+      </td>
+    </tr>
+    <tr>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 2px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        height="20"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+      </td>
+      <td
+        style="border-top: 2px solid #000000; border-right: 1px solid #000000"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 2px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        colspan="11"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">FEA Contact Stress Plot</font></b>
+      </td>
+    </tr>
+    <tr>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 2px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        height="68"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">S.N.</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">Project</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">Gear Pair</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">Model</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">Design</font></b>
+      </td>
+      <td
+        style="border-top: 2px solid #000000; border-left: 1px solid #000000"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"
+            >Nominal /Design <br />Torque <br />[Nm]</font
+          ></b
+        >
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 2px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">Parts</font></b>
+      </td>
+      <td
+        style="
+          border-bottom: 2px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        colspan="2"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdval="0"
+        sdnum="1033;"
+      >
+        <b><font face="Century Gothic" color="#000000">2000</font></b>
+      </td>
+      <td
+        style="
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        colspan="2"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdval="1000"
+        sdnum="1033;0;0"
+      >
+        <b><font face="Century Gothic" color="#000000">3000</font></b>
+      </td>
+      <td
+        style="
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        colspan="2"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdval="2000"
+        sdnum="1033;0;0"
+      >
+        <b><font face="Century Gothic" color="#000000">4000</font></b>
+      </td>
+      <td
+        style="
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        colspan="2"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdval="4000"
+        sdnum="1033;0;0"
+      >
+        <b><font face="Century Gothic" color="#000000">5000</font></b>
+      </td>
+      <td
+        style="
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        colspan="2"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdval="4000"
+        sdnum="1033;0;0"
+      >
+        <b><font face="Century Gothic" color="#000000">6000</font></b>
+      </td>
+    </tr>
+    <tr>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 2px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="6"
+        height="116"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+        sdval="1"
+        sdnum="1033;"
+      >
+        <b><font face="Century Gothic" color="#000000">1</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="6"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b><font face="Century Gothic" color="#000000">JJ01</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="6"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b><font face="Century Gothic" color="#000000">JJ01-A1B1</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="6"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b><font face="Century Gothic" color="#000000">31XX</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="6"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b><font face="Century Gothic" color="#000000">AAM</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="6"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdval="4000"
+        sdnum="1033;"
+      >
+        <b><font face="Century Gothic" color="#000000">4000</font></b>
+      </td>
+      <td
+        style="
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">Gear</font></b>
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+        <img src="../assets/img/g1.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+        <img src="../assets/img/g2.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/g3.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/g4.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/g5.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/g6.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/g7.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 2px solid #000000;
+          border-bottom: 1px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/g8.jpg" width="100" height="100">
+      </td>
+      <td
+      style="
+        border-top: 2px solid #000000;
+        border-bottom: 1px solid #000000;
+        border-left: 1px solid #000000;
+        border-right: 2px solid #000000;
+      "
+      rowspan="3"
+      align="center"
+      valign="middle"
+      bgcolor="#00B050"
+      sdnum="1033;0;0"
+    >
+      <font face="Century Gothic" color="#000000"><br /></font>
+      <img src="../assets/img/g9.jpg" width="100" height="100">
+    </td>
+    <td
+    style="
+      border-top: 2px solid #000000;
+      border-bottom: 1px solid #000000;
+      border-left: 1px solid #000000;
+      border-right: 2px solid #000000;
+    "
+    rowspan="3"
+    align="center"
+    valign="middle"
+    bgcolor="#00B050"
+    sdnum="1033;0;0"
+  >
+    <font face="Century Gothic" color="#000000"><br /></font>
+    <img src="../assets/img/g10.jpg" width="100" height="100">
+  </td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#BFBFBF"
+      >
+        <b><font face="Century Gothic" color="#000000">Pinion</font></b>
+        <!-- <img src="g9.jpg" width="100" height="100"> -->
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+        <img src="../assets/img/p1.jpg" width="100" height="100">
+        sam
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+      >
+        <b
+          ><font face="Century Gothic" color="#000000"><br /></font
+        ></b>
+        <img src="../assets/img/p2.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p3.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p4.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p5.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p6.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 1px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p7.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p8.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p9.jpg" width="100" height="100">
+      </td>
+      <td
+        style="
+          border-top: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+          border-left: 1px solid #000000;
+          border-right: 2px solid #000000;
+        "
+        rowspan="3"
+        align="center"
+        valign="middle"
+        bgcolor="#00B050"
+        sdnum="1033;0;0"
+      >
+        <font face="Century Gothic" color="#000000"><br /></font>
+        <img src="../assets/img/p10.jpg" width="100" height="100">
+      </td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+  </table>
+
+</div>
+
   </v-app>
 </template>
+
+
+
+<style type="text/css">
+body,
+div,
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+p {
+  font-family: "Calibri";
+  font-size: x-small;
+}
+a.comment-indicator:hover + comment {
+  background: #ffd;
+  position: absolute;
+  display: block;
+  border: 1px solid black;
+  padding: 0.5em;
+}
+a.comment-indicator {
+  background: red;
+  display: inline-block;
+  border: 1px solid black;
+  width: 0.5em;
+  height: 0.5em;
+}
+comment {
+  display: none;
+}
+</style>
+
 
 <script>
 import axios from "axios";
@@ -640,7 +1434,7 @@ let j=1;
       this.dialog = false;
 
       await axios
-        .post("http://localhost:3000/D", this.postdata)
+        .post("http://localhost:8083/api/items", this.postdata)
         .then((result1) => {
           console.log("Result : ", result1);
           // this.pcddata();
